@@ -36,10 +36,16 @@ insertar($tabla,$campos);
 	$(document).ready(function(){
 
 
-		$("#add-report-type-buttons").hide();
+		
 		$("#reportType").change(function(){
 			//Raporte Mensual
 			$("#add-report-type-buttons").hide();
+			if ($(this).val()==1) {	
+				$("#add-report-type-buttons").show();
+			}
+			if ($(this).val()==2) {	
+				$("#add-report-type-buttons").show();
+			}
 			if ($(this).val()==3) {
 				$("#add-report-type").html('<label for="mes" class="control-label">Mes</label><div class="controls"><select class="selectpicker" name="mes"><option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option><option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option><option value="6">Julio</option><option value="7">Agosto</option><option value="8">Setiembre</option><option value="9">Octubre</option><option value="10">Noviembre</option><option value="11">Diciembre</option></select></div>');
 				$("#add-report-type-buttons").show();
@@ -126,6 +132,9 @@ insertar($tabla,$campos);
 
 							</form>
 							<p class="text-success">Vea el detalle de la mesa <strong><?php print ucwords($estado[1]);?></strong> haciendo click en el estado.</p>
+							<div id="barra">
+								
+							</div>
 						</div>
 					</div>
 				</div>
