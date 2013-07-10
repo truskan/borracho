@@ -82,11 +82,12 @@ $(document).ready(function(){
 			ingredientes.push($(this).val());
 			ingrediente_nombre.push($(this).text());
 		});
-		var html="";
+		var html="<label for='cantidad' class='control-label'>Cantidades</label><div class='controls'>";
 		$.each( ingredientes, function( key, value ) {
 		  html+="<input type='text' name='cantidad[]' class='input-mini quantity-data' placeholder='0'/> "+ingrediente_nombre[key]+"<br>";
 		});
-		$(".add-product .controls").html(html);
+		html+="</div>";
+		$(".add-product").html(html);
 
 	});
 	//bootbox.alert("hola");
@@ -97,11 +98,27 @@ $(document).ready(function(){
 			ingredientes.push($(this).val());
 			ingrediente_nombre.push($(this).text());
 		});
-		var html="";
+		var html="<label for='cantidad' class='control-label'>Cantidades</label><div class='controls'>";
 		$.each( ingredientes, function( key, value ) {
 		  html+="<input type='text' name='cantidad[]' class='input-mini quantity-data' placeholder='0'/> "+ingrediente_nombre[key]+"<br>";
 		});
-		$(".add-ingrediente .controls").html(html);
+		html+="</div>";
+		$(".add-ingrediente").html(html);
+	});
+
+	$("#ingrediente-edit").change(function() {
+		var ingredientes=new Array();
+		var ingrediente_nombre=new Array();
+		$("#ingrediente-edit option:selected").each(function() {
+			ingredientes.push($(this).val());
+			ingrediente_nombre.push($(this).text());
+		});
+		var html="<label for='cantidad' class='control-label'>Cantidades</label><div class='controls'>";
+		$.each( ingredientes, function( key, value ) {
+		  html+="<input type='text' name='cantidad[]' class='input-mini quantity-data' placeholder='0'/> "+ingrediente_nombre[key]+"<br>";
+		});
+		html+="</div>";
+		$(".add-ingrediente-edit").html(html);
 	});
 
 

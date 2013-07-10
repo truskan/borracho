@@ -66,13 +66,24 @@ insertar($tabla,$campos);
 				<small>Configuracion de Ingrediente - <em>Parte inferior</em></small>
 				<div class="tabbable">
 					<ul class="nav nav-tabs">
+						<?php 
+						if ($_GET["t"]) { 
+							$sw=true;?>
+						<li ><a href="#tab1" data-toggle="tab">Estado</a></li>
+						<?php } else {?>
 						<li class="active" ><a href="#tab1" data-toggle="tab">Estado</a></li>
+						<?php 
+						}
+						?>
 						<?php if ($_SESSION["admin"]) { ?>
 						<li ><a href="#tab2" data-toggle="tab">Nuevo</a></li>
 						<?php } ?>
+						<?php if ($_GET["t"]) { ?>
+						<li class="active"><a href="#tab3" data-toggle="tab">Editar</a></li>
+						<?php } ?>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="tab1">
+						<div class="tab-pane <?php if (!($sw)) { ?> active" <?php } ?> id="tab1">
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -99,7 +110,7 @@ insertar($tabla,$campos);
 										<td><?php print date("d/m/Y",$item["f_vencimiento"]); ?></td>
 										<td><?php print date("d/m/Y",$item["f_vencimiento"]);   ?></td>
 										<td><?php print strtoupper($estado_in[$item["estado"]]); ?></td>
-										<td><button ingrediente="<?php print $item["id"];?>" class="btn btn-danger delete-ingrediente" ><i class="icon-remove"></i></button></td>
+										<td><button ingrediente="<?php print $item["id"];?>" class="btn btn-danger delete-ingrediente" ><i class="icon-remove"></i></button><a href="ingrediente_admin.php?a=editar&t=ingrediente&id=<?php print $item["id"];?>" role="button" data-toggle="modal" class="btn btn-warning" ><i class="icon-edit"></i></a></td>
 									</tr>
 									<?php
 									$i++;
@@ -138,6 +149,44 @@ insertar($tabla,$campos);
 									</div>
 								</fieldset>
 							</form>
+						</div>
+						<div class="tab-pane <?php if ($sw) {?>active<?php }?>" id="tab3">
+							<?php 
+							$campo=array("id"=>$_GET["id"]);
+							$tabla=$_GET["t"];
+							$accion=$_GET["a"];
+							$tabla=listarDatosPorCampoUnico($tabla,$campo);
+							foreach ($tabla as $item) { ?>	
+							<form class="form-horizontal" action="editar.php" method="post">
+								<fieldset>
+									<legend>Editar Ingrediente</legend>
+									<input type="hidden" name="t" value="<?php print $_GET["t"]; ?>"/>
+									<input type="hidden" name="id" value="<?php print $_GET["id"]; ?>"/>
+									<div class="control-group">
+										<label class="control-label" for="producto">Nombre del Ingrediente</label>
+										<div class="controls">
+											<input type="text" required="required" class="input-xlarge" name="ingrediente" value="<?php print ucwords($item["ingrediente"]); ?>">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="costo">Costo</label>
+										<div class="controls">
+											<input type="text" required="required" class="input-mini" name="costo" value="<?php print $item["costo"]; ?>">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="sotck">Stock</label>
+										<div class="controls">
+											<input type="text" required="required" class="input-mini" name="stock" value="<?php print $item["stock"]; ?>">
+										</div>
+									</div>
+									<div class="form-actions">
+										<input type="submit" class="btn btn-primary" value="Listo!"/>
+									</div>
+									<?php } ?>
+								</fieldset>
+							</form>
+							
 						</div>
 					</div>
 				</div>

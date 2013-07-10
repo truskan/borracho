@@ -54,6 +54,7 @@ if($_POST){
 			"id_producto"=>$item
 		);	
 		insertar("detalle_venta",$campos);
+		$i++;
 	}
 	//print_r($campos);
 	header("location:mesa_admin_actual.php");

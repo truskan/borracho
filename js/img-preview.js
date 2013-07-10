@@ -9,7 +9,7 @@ $(document).ready(function(){
 		    	reader.readAsDataURL(input.files[0]);
 		}
 	}
-	$(".foto-preview").hide();
+	//$(".foto-preview").hide();
 	$("#foto").change(function() {
 		$(".foto-preview").show();
 	    readURL(this);

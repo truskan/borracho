@@ -188,6 +188,7 @@ function listarDatosPorCampoUnico($tabla,$campo){
 	while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
 		$campos[]=$filas_aux["Field"];
 	}
+	
 	$sql="SELECT * FROM ".$tabla." WHERE ".array_keys($campo)[0]."='".$campo[array_keys($campo)[0]]."' group by ".array_keys($campo)[0];
 	$resultado=mysql_query($sql);
 	$tabla=array();
@@ -245,11 +246,14 @@ function extensiones($ext){
 
 
 function listarIngrediente($id_producto){
-	$sql="SELECT d.id,ingrediente FROM detalle_plato d INNER JOIN ingrediente i on d.id_ingrediente=i.id WHERE d.id_producto='$id_producto'";
+	$sql="SELECT d.id,i.id as id_ingrediente, d.cantidad,ingrediente FROM detalle_plato d INNER JOIN ingrediente i on d.id_ingrediente=i.id WHERE d.id_producto='$id_producto'";
 	$resultado=mysql_query($sql);
 	$tabla=array();
 	while ($filas=mysql_fetch_assoc($resultado)) {
+			$tabla[$filas["id"]]["id"]=$filas["id"];
+			$tabla[$filas["id"]]["id_ingrediente"]=$filas["id_ingrediente"];
 			$tabla[$filas["id"]]["ingrediente"]=$filas["ingrediente"];
+			$tabla[$filas["id"]]["cantidad"]=$filas["cantidad"];
 	}
 	return $tabla;
 }
@@ -324,5 +328,7 @@ function listarVentas() {
 	//Tabla es un array que contiene a otro array :)
 	return $tabla;
 }
+
+
 
 ?>

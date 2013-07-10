@@ -146,14 +146,14 @@ insertar($tabla,$campos);
 									<div class="control-group">
 										<label class="control-label" for="producto">Nombre del Producto</label>
 										<div class="controls">
-											<input type="text" class="input-xlarge" id="producto" name="producto">
+											<input type="text" required="required" class="input-xlarge" id="producto" name="producto">
 											<p class="help-block">Nombre que aparecera en el Menu.</p>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="p_venta">Precio Venta</label>
 										<div class="controls">
-											<input type="text" class="input-mini" id="p_venta" name="p_venta">
+											<input type="text" required="required" class="input-mini" id="p_venta" name="p_venta">
 											<p class="help-block">Relativo.</p>
 										</div>
 									</div>
@@ -169,19 +169,13 @@ insertar($tabla,$campos);
 									<div class="control-group">
 										<label class="control-label" for="descripcion">Descripcion</label>
 										<div class="controls">
-											<textarea class="input-xlarge" id="textarea" name="descripcion" rows="3"></textarea>
+											<textarea class="input-xlarge" required="required" id="textarea" name="descripcion" rows="3"></textarea>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="foto">Foto</label>
 										<div class="controls">
-											<input class="input-file" id="foto" name="foto" type="file">
-										</div>
-									</div>
-									<div class="control-group foto-preview">
-										<label class="control-label" for="prefoto">Previsualizacion</label>
-										<div class="controls">
-											<img src="#"  alt="Tu Producto" id="foto-preview" class="img-rounded span3">
+											<input class="input-file" id="fileInput" name="foto" type="file">
 										</div>
 									</div>
 									<div class="control-group">
@@ -224,39 +218,58 @@ insertar($tabla,$campos);
 							$accion=$_GET["a"];
 							$tabla=listarDatosPorCampoUnico($tabla,$campo);
 							foreach ($tabla as $item) { ?>	
-							<form class="form-horizontal">
+							<form class="form-horizontal" action="editar.php" method="post" enctype='multipart/form-data'>
 								<fieldset>
 									<legend>Editar Producto</legend>
+									<input type="hidden" name="t" value="<?php print $_GET["t"]; ?>"/>
+									<input type="hidden" name="id" value="<?php print $_GET["id"]; ?>"/>
 									<div class="control-group">
 										<label class="control-label" for="producto">Nombre del Producto</label>
 										<div class="controls">
-											<input type="text" required="required" class="input-xlarge" id="producto" value="<?php print ucwords($item["producto"]); ?>">
+											<input type="text" required="required" class="input-xlarge" name="producto" value="<?php print ucwords($item["producto"]); ?>">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="p_venta">Precio de Venta</label>
 										<div class="controls">
-											<input type="text" required="required" class="input-mini" id="p_venta" value="<?php print $item["p_venta"]; ?>">
+											<input type="text" required="required" class="input-mini" name="p_venta" value="<?php print $item["p_venta"]; ?>">
 										</div>
 									</div>
 									<div class="control-group">
-										<div class="control-group">
-											<label class="control-label" for="ingrediente[]">Ingredientes</label>
-											<div class="controls">
-												<select multiple="multiple" id="multiSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-										</div>										
-									</div>
+										<label class="control-label" for="ingrediente">Ingredientes</label>
+										<div class="controls">
+											<select multiple="multiple" name="ingrediente[]" id="ingrediente-edit">
+											<?php 
+											$nombres=listarIngrediente($item["id"]);
+											$total=listarTodosIngredientes();
+											foreach ($nombres as $item2) { ?>
+												<option selected value="<?php print $item2["id_ingrediente"];?>"><?php print ucwords($item2["ingrediente"]);?></option>
+											<?php
+												unset($total[$item2["id_ingrediente"]]);
+											}
+											foreach ($total as $item1) { ?>
+												<option  value="<?php print $item1["id"];?>"><?php print ucwords($item1["ingrediente"]);?></option>
+											<?php	
+											}
+											?>
+											</select>
+										</div>
+									</div>		
+									<div class="control-group add-ingrediente-edit">
+										<label for="cantidad" class="control-label">Cantidades</label>
+										<div class="controls">
+										<?php
+										foreach ($nombres as $item1) { ?>
+											<input type='text' name='cantidad[]' class='input-mini' value='<?php print $item1["cantidad"];?>' placeholder='0'/> <?php print ucwords($item1["ingrediente"]);?><br>
+										<?php 
+										}
+										?>
+										</div>
+									</div>								
 									<div class="control-group">
 										<label class="control-label" for="descripcion">Descripcion</label>
 										<div class="controls">
-											<textarea class="input-xlarge" id="textarea" required="required" rows="3"><?php print $item["descripcion"];?></textarea>
+											<textarea class="input-xlarge" name="descripcion" required="required" rows="3"><?php print $item["descripcion"];?></textarea>
 										</div>
 									</div>
 									<div class="control-group">
@@ -268,13 +281,12 @@ insertar($tabla,$campos);
 									<div class="control-group foto-preview">
 										<label class="control-label" for="prefoto">Previsualizacion</label>
 										<div class="controls">
-											<img src="#"  alt="Tu Producto" id="foto-preview" class="img-rounded span3">
+											<img src="<?php print $item["foto"];?>"  alt="Tu Producto" id="foto-preview" class="img-rounded span3">
 										</div>
 									</div>
 									
 									<div class="form-actions">
-										<button type="submit" class="btn btn-primary">Save changes</button>
-										<button class="btn">Cancel</button>
+										<input type="submit" class="btn btn-primary" value="Listo!"/>
 									</div>
 									<?php } ?>
 								</fieldset>

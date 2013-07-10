@@ -16,7 +16,7 @@ if($_POST){
 		//$sql="update usuario set nombres='$nombres', email='$email',imagen='$origen' where id_usuario='".$_SESSION["usuario"]["codigo"]."'";
 	}
 	else {
-		$foto="default.png";
+		$foto="img/productos/default.png";
 	}
 
 	//falta p_costo
@@ -57,7 +57,7 @@ if($_POST){
 			"cantidad"=>$cantidad[$i]
 		);	
 		insertar("detalle_plato",$campos);
-
+		$i++;
 	}
 	
 	header("location:producto_admin.php");
