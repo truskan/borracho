@@ -37,7 +37,7 @@ CREATE TABLE `cliente` (
   `f_creacion` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'yuri marquez','12234567898','1372819293'),(4,'felipe aliaga','','1372819342'),(5,'jose olivera','','1372819383'),(6,'noemi espinoza','','1372819415'),(7,'stephani mendez','','1372819423'),(8,'jose martinez','','1372819430'),(9,'irvin gamarra','','1372819440'),(10,'suzanne palacios','','1372819447'),(11,'michael pazce','','1372819461'),(12,'Jose Ramos','','1372892587');
+INSERT INTO `cliente` VALUES (1,'yuri marquez','12234567898','1372819293'),(4,'felipe aliaga','','1372819342'),(5,'jose olivera','','1372819383'),(6,'noemi espinoza','','1372819415'),(7,'stephani mendez','','1372819423'),(8,'jose martinez','','1372819430'),(9,'irvin gamarra','','1372819440'),(10,'suzanne palacios','','1372819447'),(11,'michael pazce','','1372819461'),(12,'Jose Ramos','','1372892587'),(13,'','','1373482237');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `detalle_plato` (
   `id_ingrediente` int(11) NOT NULL,
   `cantidad` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `detalle_plato` (
 
 LOCK TABLES `detalle_plato` WRITE;
 /*!40000 ALTER TABLE `detalle_plato` DISABLE KEYS */;
-INSERT INTO `detalle_plato` VALUES (1,1,2,0.3),(2,1,3,0.25),(3,1,4,0.25),(4,1,5,0.25),(5,1,6,0.25),(6,2,1,0.25),(7,2,2,0.25),(8,2,3,0.25),(9,2,4,0.25),(10,2,5,0.25),(11,2,6,0.25),(12,3,1,0.25),(13,3,2,0.25),(14,3,3,0.25),(15,3,4,0.25),(16,3,5,0.25),(17,3,6,0.25),(18,12,7,2),(19,12,5,2);
+INSERT INTO `detalle_plato` VALUES (1,1,2,0.3),(2,1,3,0.25),(3,1,4,0.25),(4,1,5,0.25),(5,1,6,0.25),(6,2,1,0.25),(7,2,2,0.25),(8,2,3,0.25),(9,2,4,0.25),(10,2,5,0.25),(11,2,6,0.25),(12,3,1,0.25),(13,3,2,0.25),(14,3,3,0.25),(15,3,4,0.25),(16,3,5,0.25),(17,3,6,0.25),(18,12,7,2),(19,12,5,2),(20,13,5,12),(21,13,6,12),(22,13,2,12),(23,14,3,1),(24,14,2,1),(25,19,2,2),(26,19,1,2),(27,20,9,2),(28,20,5,2);
 /*!40000 ALTER TABLE `detalle_plato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `detalle_venta` (
   `cantidad` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `detalle_venta` (
 
 LOCK TABLES `detalle_venta` WRITE;
 /*!40000 ALTER TABLE `detalle_venta` DISABLE KEYS */;
-INSERT INTO `detalle_venta` VALUES (1,1,3,1),(2,1,2,2),(3,1,1,3),(4,2,4,1),(5,2,3,2),(6,2,2,3),(7,3,4,1),(8,3,3,2),(9,3,2,3),(65,14,1,1),(66,14,1,2),(67,15,1,1),(68,15,1,2),(69,16,1,1),(70,16,1,2),(71,17,2,1),(72,17,2,2),(73,18,2,12);
+INSERT INTO `detalle_venta` VALUES (1,1,3,1),(2,1,2,2),(3,1,1,3),(4,2,4,1),(5,2,3,2),(6,2,2,3),(7,3,4,1),(8,3,3,2),(9,3,2,3),(65,14,1,1),(66,14,1,2),(67,15,1,1),(68,15,1,2),(69,16,1,1),(70,16,1,2),(71,17,2,1),(72,17,2,2),(73,18,2,12),(74,19,2,19),(75,19,2,20),(76,20,1,19),(77,21,2,19),(78,21,2,20),(79,22,3,14),(80,22,3,19),(81,22,3,20),(82,23,2,19),(83,23,2,20),(84,24,5,14),(85,24,5,19),(86,25,10,14),(87,25,10,20),(88,26,2,14),(89,26,2,20),(90,27,2,19),(91,27,2,20),(92,28,2,19),(93,28,3,20);
 /*!40000 ALTER TABLE `detalle_venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `ingrediente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ingrediente` varchar(100) NOT NULL,
   `costo` float NOT NULL,
-  `stock` int(11) NOT NULL,
+  `stock` float DEFAULT NULL,
   `f_compra` varchar(10) NOT NULL,
   `f_vencimiento` varchar(10) NOT NULL,
   `estado` int(11) NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE `ingrediente` (
 
 LOCK TABLES `ingrediente` WRITE;
 /*!40000 ALTER TABLE `ingrediente` DISABLE KEYS */;
-INSERT INTO `ingrediente` VALUES (1,'pescado jurel',4.5,18,'1372007212','1373303212',1),(2,'pescado bonito',4.5,12,'1371728152','1373024152',1),(3,'papa',4.5,12,'1371728152','1373024152',1),(4,'ajos',4.5,12,'1371728152','1373024152',1),(5,'kion',4.5,12,'1371728152','1373024152',1),(6,'limon',4.5,12,'1371728152','1373024152',1),(7,'apio',4.5,12,'1371728152','1373024152',1),(8,'pota',4.5,12,'1371728152','1373024152',1),(9,'arroz',3.5,10,'1372958297','1374254297',1);
+INSERT INTO `ingrediente` VALUES (1,'pescado jurel',4.5,74,'1372007212','1373303212',1),(2,'pescado bonito',4.5,54,'1371728152','1373024152',1),(3,'papa',4.5,80,'1371728152','1373024152',1),(4,'ajos',4.5,100,'1371728152','1373024152',1),(5,'kion',4.5,62,'1371728152','1373024152',1),(6,'limon',4.5,100,'1371728152','1373024152',1),(7,'apio',4.5,100,'1371728152','1373024152',1),(8,'pota',4.5,100,'1371728152','1373024152',1),(9,'arroz',3.5,62,'1372958297','1374254297',1);
 /*!40000 ALTER TABLE `ingrediente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,13 +173,13 @@ CREATE TABLE `producto` (
   `producto` text NOT NULL,
   `p_venta` float NOT NULL,
   `p_costo` float NOT NULL,
-  `categoria` int(11) NOT NULL,
+  `categoria` int(11) DEFAULT '1',
   `descripcion` text NOT NULL,
   `foto` text NOT NULL,
-  `estrella` int(11) NOT NULL,
+  `estrella` int(11) DEFAULT '0',
   `f_creacion` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (12,'leche de tigre',8,22.5,1,'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.','img/productos/1372901475.jpeg',1,'1372901475');
+INSERT INTO `producto` VALUES (14,'chaufa de mariscos',15,13.5,1,'sdfsdfs','img/productos/1373475370.jpeg',1,'1373475370'),(19,'Leche de Tigre',8,22.5,1,'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.','img/productos/1373478337.jpeg',0,'1373478337'),(20,'Parihuela',15,20.5,1,'Una parihuela','img/productos/1373478392.jpeg',0,'1373478392');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +210,7 @@ CREATE TABLE `venta` (
   `estado` int(11) NOT NULL DEFAULT '1',
   `cancelado` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +219,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,1,1,35.5,'1372857039',4,1,2,1),(2,1,2,51,'1372857039',6,1,2,1),(3,1,3,51,'1372857039',6,1,2,1),(14,1,7,26,'1372893186',1,1,2,1),(15,1,7,26,'1372893270',1,1,2,1),(16,1,4,18,'1372893434',12,1,1,0),(17,1,5,28,'1372893452',12,1,1,0),(18,1,1,16,'1372956169',1,1,2,0);
+INSERT INTO `venta` VALUES (1,1,1,35.5,'1372857039',4,1,2,1),(2,1,2,51,'1372857039',6,1,2,1),(3,1,3,51,'1372857039',6,1,2,1),(14,1,7,26,'1372893186',1,1,2,1),(15,1,7,26,'1372893270',1,1,2,1),(16,1,4,18,'1372893434',12,1,2,1),(17,1,5,28,'1372893452',12,1,2,1),(18,1,1,16,'1372956169',1,1,2,1),(19,1,1,61,'1373481603',1,1,2,0),(20,1,2,8,'1373481677',12,1,2,0),(21,1,1,76,'1373482030',1,1,2,0),(22,1,8,114,'1373482062',12,1,2,0),(23,1,1,61,'1373482218',1,1,2,0),(24,1,2,123,'1373482228',1,1,2,0),(25,1,14,180,'1373482237',13,1,2,0),(26,1,1,75,'1373482353',1,1,2,0),(27,1,12,61,'1373482472',1,1,1,0),(28,1,5,61,'1373482521',1,1,1,0);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -232,4 +232,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-06 14:49:34
+-- Dump completed on 2013-07-10 13:57:01
