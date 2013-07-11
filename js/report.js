@@ -11,7 +11,8 @@ $(document).ready(function() {
 		la_variable=data.split("/");
 		line1=new Array();
 		$.each(la_variable, function(key, value) {
-			line1.push(key,value);
+			datos=line1[key].split("*");
+			line1.push(datos[0],datos[1]);
 		});
 
 		$('#barra').jqplot([line1], {

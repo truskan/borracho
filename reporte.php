@@ -25,13 +25,20 @@ insertar($tabla,$campos);
 	<link rel="stylesheet" href="css/bootstrap-select.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
+	<script type="text/javascript" src="js/jquery.jqplot.css"></script>
+	<script type="text/javascript" src="js/jquery.jqplot.min.css"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap-select.js"></script>
 	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="js/jquery.jqplot.js"></script>
+	<script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
 	<script type="text/javascript" src="js/bootbox.js"></script>
 	<script type="text/javascript" src="js/change-state.js"></script>
+	
+
+
 	<script type="text/javascript">
 	$(document).ready(function(){
 
@@ -125,7 +132,7 @@ insertar($tabla,$campos);
 								</div>
 								<div class="control-group" id="add-report-type-buttons">
 									<div class="form-actions">
-										<input type="submit" class="btn btn-primary" value="Listo!"/>
+										<button type="submit" class="btn btn-primary" value="Listo!"/>
 										<input type="reset" class="btn" value="Cancel"/>
 									</div>
 								</div>

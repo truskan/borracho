@@ -9,7 +9,8 @@ $(document).ready(function(){
 					data: "venta="+$(".terminate-state").attr("venta"),
 					success: function(data) {
 						if (data) {
-						location.reload();
+							window.open("boleta.php","_blank");
+							location.reload();
 						}
 					}
 				});
